@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.myfavoriteplaces.myfavoriteplaces.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <ImageButton
+        android:layout_width="250dip"
+        android:layout_height="250dip"
+        android:id="@+id/SavePlaces"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/save_place"/>
+
+    <ImageButton
+        android:layout_width="250dip"
+        android:layout_height="250dip"
+        android:id="@+id/ListPlaces"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/list_place"/>
+
+    <ImageButton
+        android:layout_width="250dip"
+        android:layout_height="250dip"
+        android:id="@+id/Itineraire"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/itineraire"/>
+
+    <ImageButton
+    android:layout_width="250dip"
+    android:layout_height="250dip"
+    android:id="@+id/ListItineraire"
+    android:layout_centerVertical="true"
+    android:layout_alignParentRight="true"
+    android:background="@drawable/list_iti"/>
+
+    <ImageButton
+        android:layout_width="250dip"
+        android:layout_height="250dip"
+        android:id="@+id/About"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/about"/>
+
+    <ImageButton
+        android:layout_width="250dip"
+        android:layout_height="250dip"
+        android:id="@+id/Exit"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/exit"/>
+
+
+</RelativeLayout>
