@@ -18,31 +18,6 @@
         android:id="@+id/SavePlaces"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/save_place"/>
-
-    <ImageButton
-        android:layout_width="250dip"
-        android:layout_height="250dip"
-        android:id="@+id/ListPlaces"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:background="@drawable/list_place"/>
-
-    <ImageButton
-        android:layout_width="250dip"
-        android:layout_height="250dip"
-        android:id="@+id/About"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/about"/>
-
-    <ImageButton
-        android:layout_width="250dip"
-        android:layout_height="250dip"
-        android:id="@+id/Exit"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/exit"/>
-
 
 </RelativeLayout>
