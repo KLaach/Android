@@ -38,7 +38,7 @@ public class NotesDbAdapter {
 
     public static final String KEY_TITLE = "title";
     public static final String KEY_TYPE = "type";
-    public static final String KEY_ADRESSE = "adresse";
+    public static final String KEY_ADDRESS = "address";
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_ROWID = "_id";
 
@@ -55,7 +55,7 @@ public class NotesDbAdapter {
 
     private static final String DATABASE_NAME = "data";
     private static final String DATABASE_TABLE = "places";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     private final Context mCtx;
 
@@ -110,11 +110,11 @@ public class NotesDbAdapter {
     }
 
 
-    public long createPlace(String title, String type, String adresse, String description) {
+    public long createPlace(String title, String type, String address, String description) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_TITLE, title);
         initialValues.put(KEY_TYPE, type);
-        initialValues.put(KEY_ADRESSE, adresse);
+        initialValues.put(KEY_ADDRESS, address);
         initialValues.put(KEY_TYPE, description);
 
         return mDb.insert(DATABASE_TABLE, null, initialValues);
@@ -138,7 +138,7 @@ public class NotesDbAdapter {
     public Cursor fetchAllPlaces() {
 
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_TITLE,
-                KEY_TYPE, KEY_ADRESSE, KEY_DESCRIPTION}, null, null, null, null, null);
+                KEY_TYPE, KEY_ADDRESS, KEY_DESCRIPTION}, null, null, null, null, null);
     }
 
     public Cursor fetchPlace(long rowId) throws SQLException {
@@ -146,7 +146,7 @@ public class NotesDbAdapter {
         Cursor mCursor =
 
                 mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                                KEY_TITLE, KEY_TYPE, KEY_ADRESSE, KEY_DESCRIPTION}, KEY_ROWID + "=" + rowId, null,
+                                KEY_TITLE, KEY_TYPE, KEY_ADDRESS, KEY_DESCRIPTION}, KEY_ROWID + "=" + rowId, null,
                         null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -155,11 +155,11 @@ public class NotesDbAdapter {
 
     }
 
-    public boolean updateNote(long rowId, String title, String type, String adresse, String description) {
+    public boolean updateNote(long rowId, String title, String type, String address, String description) {
         ContentValues args = new ContentValues();
         args.put(KEY_TITLE, title);
         args.put(KEY_TYPE, type);
-        args.put(KEY_ADRESSE, adresse);
+        args.put(KEY_ADDRESS, address);
         args.put(KEY_DESCRIPTION, description);
 
         return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;

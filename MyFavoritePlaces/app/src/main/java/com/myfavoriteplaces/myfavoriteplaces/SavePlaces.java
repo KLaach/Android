@@ -1,5 +1,6 @@
 package com.myfavoriteplaces.myfavoriteplaces;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -64,6 +65,13 @@ public class SavePlaces extends AppCompatActivity {
         final Spinner type = (Spinner) findViewById(R.id.TypePlace);
         final EditText adresse = (EditText) findViewById(R.id.AdressePlace);
         final EditText description = (EditText) findViewById(R.id.DescriptionPlace);
+
+        Intent intent = new Intent(SavePlaces.this, ListPlaces.class);
+        intent.putExtra("name" , name.getText().toString());
+        intent.putExtra("type", type.getSelectedItem().toString());
+        intent.putExtra("adresse", adresse.getText().toString());
+        intent.putExtra("description", description.getText().toString());
+        startActivity(intent);
 
         createPlace(name.getText().toString(), type.getSelectedItem().toString(), adresse.getText().toString(), description.getText().toString());
 

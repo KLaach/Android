@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,8 +48,12 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(MainActivity.this,"Sauvegarder une place", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, SavePlaces.class);
                 startActivity(intent);
+
+
             }
         });
+
+
     }
 
     public void addListenerOnButtonListPlaces() {

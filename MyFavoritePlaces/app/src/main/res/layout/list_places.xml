@@ -12,12 +12,8 @@
     tools:context="com.myfavoriteplaces.myfavoriteplaces.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <ImageButton
-        android:layout_width="250dip"
-        android:layout_height="250dip"
-        android:id="@+id/SavePlaces"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/list_place"/>
+    <ListView android:id="@+id/affichage_listplace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
 
 </RelativeLayout>
