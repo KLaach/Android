@@ -57,6 +57,17 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Adresse"
+        />
+
+    <EditText android:id="@+id/AdressePlace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/adresse_place" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Description"
         />
 
@@ -76,16 +87,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/save"
-            android:onClick="" />
+            android:onClick="savePlace" />
 
         <Button
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/cancel"
-            android:onClick="" /></LinearLayout>
-
-
-
+            android:onClick="cancel" /></LinearLayout>
 
 </LinearLayout>

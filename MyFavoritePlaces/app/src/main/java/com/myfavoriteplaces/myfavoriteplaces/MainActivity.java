@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     ImageButton SavePlaces;
     ImageButton ListPlaces;
-    ImageButton Itineraire;
-    ImageButton ListItineraire;
     ImageButton About;
     ImageButton Exit;
 

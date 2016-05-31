@@ -2,6 +2,7 @@
     <string name="app_name">"My Favorite Places "</string>
     <string name="action_settings">Settings</string>
     <string name="nom_place"></string>
+    <string name="adresse_place"></string>
     <string name="description_place"></string>
     <string name="add_type">Add Type</string>
     <string name="delete_type">Delete Type</string>
