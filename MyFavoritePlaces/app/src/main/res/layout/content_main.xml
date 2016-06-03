@@ -2,59 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.myfavoriteplaces.myfavoriteplaces.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
 
         <ImageButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/SavePlaces"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:background="@mipmap/save_places_icon"/>
+            android:background="@mipmap/logo"/>
 
         <ImageButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/ListPlaces"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:background="@mipmap/show_saved_places_icon"/>
+            android:background="@mipmap/logo"/>
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
         <ImageButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/About"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:background="@mipmap/about_icon"/>
+            android:background="@mipmap/logo"/>
 
         <ImageButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/Exit"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:background="@mipmap/turn_off_icon"/>
+            android:background="@mipmap/logo"/>
 
-    </LinearLayout>
+                </LinearLayout>
 
 </LinearLayout>
