@@ -19,14 +19,18 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="26dp"
+            android:layout_marginTop="26dp"
             android:id="@+id/SavePlaces"
-            android:background="@mipmap/logo"/>
+            android:background="@mipmap/save_places_icon"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="26dp"
             android:id="@+id/ListPlaces"
-            android:background="@mipmap/logo"/>
+            android:background="@mipmap/show_saved_places_icon"/>
 
         </LinearLayout>
 
@@ -38,15 +42,19 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="26dp"
+            android:layout_marginTop="26dp"
             android:id="@+id/About"
-            android:background="@mipmap/logo"/>
+            android:background="@mipmap/about_icon"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="26dp"
             android:id="@+id/Exit"
-            android:background="@mipmap/logo"/>
+            android:background="@mipmap/turn_off_icon"/>
 
-                </LinearLayout>
+        </LinearLayout>
 
 </LinearLayout>
