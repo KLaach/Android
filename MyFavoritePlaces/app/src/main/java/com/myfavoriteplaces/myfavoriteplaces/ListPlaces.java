@@ -16,35 +16,47 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class ListPlaces extends AppCompatActivity {
-    private NotesDbAdapter mDbHelper;
+
+    ListView mListView;
+    BDManager sav;
+    SimpleCursorAdapter dataAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_places);
 
-        Intent intent = getIntent();
+        mListView = (ListView) findViewById(R.id.affichage_listplace);
 
-        ListView listplace = (ListView) findViewById(R.id.affichage_listplace);
+        sav = new BDManager(this);
+        sav.open();
+        sav.getPlaces();
 
-        mDbHelper = new NotesDbAdapter(this);
-        mDbHelper.open();
-        fillData();
+        displayListView();
     }
 
-    private void fillData() {
-        ListView listplace = (ListView) findViewById(R.id.affichage_listplace);
+    private void displayListView(){
+        Cursor cursor = sav.getPlaces();
 
-        // Get all of the notes from the database and create the item list
-        Cursor c = mDbHelper.fetchAllPlaces();
-        startManagingCursor(c);
+        String[] columns = new String[]{
+                BDManager.KEY_NOM_PLACE
+        };
 
-        String[] from = new String[] { NotesDbAdapter.KEY_TITLE };
-        int[] to = new int[] { R.id.text1 };
+        int[] to = new int[] {
+                R.id.NomPlace
+        };
 
-        // Now create an array adapter and set it to display using our row
-        SimpleCursorAdapter places =
-                new SimpleCursorAdapter(this, R.layout.place_rows, c, from, to);
-        listplace.setAdapter(places);
+        dataAdapter = new SimpleCursorAdapter(
+                this, R.layout.list_places,
+                cursor,
+                columns,
+                to,
+                0
+        );
+
+        mListView = (ListView) findViewById(R.id.affichage_listplace);
+        mListView.setAdapter(dataAdapter);
+
     }
+
 }

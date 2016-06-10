@@ -132,7 +132,8 @@ public class NotesDbAdapter {
     }
 
     public boolean deleteAllPlace(){
-       return mDb.delete(DATABASE_TABLE, null, null) > 0;
+
+        return mDb.delete(DATABASE_TABLE, null, null) > 0;
     }
 
     public Cursor fetchAllPlaces() {

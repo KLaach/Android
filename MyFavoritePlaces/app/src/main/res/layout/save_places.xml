@@ -50,14 +50,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/add_type"
-                android:onClick="" />
+                android:onClick="addType" />
 
             <Button
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/delete_type"
-                android:onClick="" /></LinearLayout>
+                android:onClick="deleteType" /></LinearLayout>
 
         <TextView
             android:layout_width="match_parent"

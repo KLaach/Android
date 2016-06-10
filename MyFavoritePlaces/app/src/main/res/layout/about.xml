@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#555555"
                 android:textSize="12dp"
-                android:text="Version: 1.0 \nDate : 31/05/16\n"
+                android:text="Version : 1.1 \nDate : 03/06/16\n"
                 />
 
             <TextView
@@ -42,14 +42,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#555555"
-                android:text="MyFavoritePlaces permet à son utilisateur de sauvegarder ses endroits favoris dans une base de données, lui permettant de retrouver facilement ses endroits préférés par type ,lieu et de voir sa description faites par l'utilisateur. \n"
+                android:text="MyFavoritePlaces permet à l'utilisateur de sauvegarder ses endroits favoris dans une base de données, lui permettant de les retrouver facilement en les filtrant par type ou par lieu, mais aussi de consulter leur description. \n"
                 />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#555555"
-                android:text="Cette application a été développé dans le cadre du projet Android a l'IUT du Littoral Côte d'Opale afin de valider les compétences acquises au cours du module."
+                android:text="Cette application a été développé dans le cadre du projet Android (module 4104C) à l'IUT du Littoral Côte d'Opale afin de valider les compétences acquises au cours du module."
                 />
         </LinearLayout>
     </ScrollView>

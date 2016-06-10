@@ -23,9 +23,6 @@ import java.util.List;
 
 public class SavePlaces extends AppCompatActivity {
 
-    private NotesDbAdapter mDbHelper;
-    private int mNoteNumber = 1;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +32,6 @@ public class SavePlaces extends AppCompatActivity {
         final Spinner type = (Spinner) findViewById(R.id.TypePlace);
         final EditText adresse = (EditText) findViewById(R.id.AdressePlace);
         final EditText description = (EditText) findViewById(R.id.DescriptionPlace);
-
-        mDbHelper = new NotesDbAdapter(this);
-        mDbHelper.open();
-        fillData();
 
         Spinner TypePlace = (Spinner) findViewById(R.id.TypePlace);
         List ChoixType = new ArrayList();
@@ -56,37 +49,28 @@ public class SavePlaces extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         TypePlace.setAdapter(adapter);
 
-
     }
 
     /** Called when the user clicks the Send button */
     public void savePlace(View view) {
         final EditText name = (EditText) findViewById(R.id.NomPlace);
         final Spinner type = (Spinner) findViewById(R.id.TypePlace);
-        final EditText adresse = (EditText) findViewById(R.id.AdressePlace);
+        final EditText address = (EditText) findViewById(R.id.AdressePlace);
         final EditText description = (EditText) findViewById(R.id.DescriptionPlace);
 
-        Intent intent = new Intent(SavePlaces.this, ListPlaces.class);
-        intent.putExtra("name" , name.getText().toString());
-        intent.putExtra("type", type.getSelectedItem().toString());
-        intent.putExtra("adresse", adresse.getText().toString());
-        intent.putExtra("description", description.getText().toString());
-        startActivity(intent);
-
-        createPlace(name.getText().toString(), type.getSelectedItem().toString(), adresse.getText().toString(), description.getText().toString());
+        BDManager sav = new BDManager(this);
+        sav.open();
+        sav.addPlace(new BD(0,name.getText().toString() ,type.getSelectedItem().toString() , address.getText().toString(),description.getText().toString()));
+        sav.close();
 
         name.setText("");
         type.setSelection(0);
-        adresse.setText("");
+        address.setText("");
         description.setText("");
     }
 
-    private void fillData(){
+    public void addType(){
 
     }
 
-    private void createPlace(String title, String type, String adresse, String description) {
-        mDbHelper.createPlace(title, type, adresse, description);
-        fillData();
-    }
 }
