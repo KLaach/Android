@@ -1,5 +1,8 @@
 package com.myfavoriteplaces.myfavoriteplaces;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -7,10 +10,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -23,6 +28,8 @@ import java.util.List;
 
 public class SavePlaces extends AppCompatActivity {
 
+    final Context context = this;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +40,7 @@ public class SavePlaces extends AppCompatActivity {
         final EditText address = (EditText) findViewById(R.id.AdressePlace);
         final EditText description = (EditText) findViewById(R.id.DescriptionPlace);
 
-        Spinner TypePlace = (Spinner) findViewById(R.id.TypePlace);
+        final Spinner TypePlace = (Spinner) findViewById(R.id.TypePlace);
         List ChoixType = new ArrayList();
         ChoixType.add("Default");
         ChoixType.add("Boîte");
@@ -41,13 +48,67 @@ public class SavePlaces extends AppCompatActivity {
         ChoixType.add("Cinéma");
         ChoixType.add("Musée");
         ChoixType.add("Restaurant");
-        ArrayAdapter adapter = new ArrayAdapter(
+        final ArrayAdapter adapter = new ArrayAdapter(
                 this,
                 android.R.layout.simple_spinner_item,
                 ChoixType
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         TypePlace.setAdapter(adapter);
+
+        Button btnSupprimer= (Button)findViewById(R.id.btnSupprimer);
+        btnSupprimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.remove((String) TypePlace.getSelectedItem());
+                TypePlace.setAdapter(adapter);
+            }
+        });
+
+        Button btnAjouter = (Button) findViewById(R.id.btnAjouter);
+
+        btnAjouter.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                // get prompts.xml view
+                LayoutInflater layoutInflater = LayoutInflater.from(context);
+
+                View promptView = layoutInflater.inflate(R.layout.prompts, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                // set prompts.xml to be the layout file of the alertdialog builder
+                alertDialogBuilder.setView(promptView);
+
+                final EditText input = (EditText) promptView.findViewById(R.id.userInput);
+
+                // setup a dialog window
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // get user input and set it to result
+                                String nouveauType = input.getText().toString();
+                                adapter.add(nouveauType);
+                                TypePlace.setAdapter(adapter);
+                            }
+                        })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,	int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                // create an alert dialog
+                AlertDialog alertD = alertDialogBuilder.create();
+
+                alertD.show();
+
+            }
+        });
 
     }
 

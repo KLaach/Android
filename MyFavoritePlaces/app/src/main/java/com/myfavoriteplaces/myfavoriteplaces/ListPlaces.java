@@ -18,8 +18,9 @@ import android.widget.Toast;
 public class ListPlaces extends AppCompatActivity {
 
     ListView mListView;
-    BDManager sav;
-    SimpleCursorAdapter dataAdapter;
+    private BDManager sav;
+    private int mPlaceNumber = 1;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,26 +37,16 @@ public class ListPlaces extends AppCompatActivity {
     }
 
     private void displayListView(){
+        mListView = (ListView) findViewById(R.id.affichage_listplace);
+
         Cursor cursor = sav.getPlaces();
 
-        String[] columns = new String[]{
-                BDManager.KEY_NOM_PLACE
-        };
+        String[] from = new String[]{ BDManager.KEY_NOM_PLACE };
+        int[] to = new int[] { R.id.text1 };
 
-        int[] to = new int[] {
-                R.id.affichage_listplace
-        };
-
-        dataAdapter = new SimpleCursorAdapter(
-                this, R.layout.list_places,
-                cursor,
-                columns,
-                to,
-                0
-        );
-
-        mListView = (ListView) findViewById(R.id.affichage_listplace);
-        mListView.setAdapter(dataAdapter);
+        SimpleCursorAdapter places =
+                new SimpleCursorAdapter(this, R.layout.place_rows, cursor, from, to);
+        mListView.setAdapter(places);
 
     }
 

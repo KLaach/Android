@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Place"
+            android:text="Lieu"
             />
 
         <EditText android:id="@+id/NomPlace"
@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+                android:id="@+id/btnAjouter"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -53,11 +54,12 @@
                 android:onClick="addType" />
 
             <Button
+                android:id="@+id/btnSupprimer"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/delete_type"
-                android:onClick="deleteType" /></LinearLayout>
+                android:text="@string/delete_type" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -68,7 +70,7 @@
         <EditText android:id="@+id/AdressePlace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/adresse_place" />
+            android:hint="@string/address_place" />
 
         <TextView
             android:layout_width="match_parent"

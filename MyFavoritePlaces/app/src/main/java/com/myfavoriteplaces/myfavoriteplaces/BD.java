@@ -47,9 +47,7 @@ public class BD {
         this.address_place = address;
     }
 
-    public String getDescription_place(){
-        return description_place;
-    }
+    public String getDescription_place(){ return description_place; }
 
     public void setDescription_place(String description){
         this.description_place = description;
