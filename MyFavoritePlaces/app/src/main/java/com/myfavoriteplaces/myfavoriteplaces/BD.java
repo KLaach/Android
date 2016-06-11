@@ -4,26 +4,23 @@ package com.myfavoriteplaces.myfavoriteplaces;
  * Created by Karim on 10/06/2016.
  */
 public class BD {
-    private int id_place;
+    private int _id;
     private String nom_place;
     private String type_place;
     private String address_place;
     private String description_place;
 
-    public BD(int id, String nom, String type, String address, String description){
-        this.id_place = id;
+    public BD(String nom, String type, String address, String description){
         this.nom_place = nom;
         this.type_place = type;
         this.address_place = address;
         this.description_place = description;
     }
 
-    public int getId_place(){
-        return id_place;
-    }
+    public int getId_place(){ return _id; }
 
     public void setId_place(int id){
-        this.id_place = id;
+        this._id = id;
     }
 
     public String getNom_place(){

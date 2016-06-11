@@ -43,7 +43,7 @@ public class ListPlaces extends AppCompatActivity {
         };
 
         int[] to = new int[] {
-                R.id.NomPlace
+                R.id.affichage_listplace
         };
 
         dataAdapter = new SimpleCursorAdapter(

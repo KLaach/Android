@@ -30,7 +30,7 @@ public class SavePlaces extends AppCompatActivity {
 
         final EditText name = (EditText) findViewById(R.id.NomPlace);
         final Spinner type = (Spinner) findViewById(R.id.TypePlace);
-        final EditText adresse = (EditText) findViewById(R.id.AdressePlace);
+        final EditText address = (EditText) findViewById(R.id.AdressePlace);
         final EditText description = (EditText) findViewById(R.id.DescriptionPlace);
 
         Spinner TypePlace = (Spinner) findViewById(R.id.TypePlace);
@@ -60,7 +60,7 @@ public class SavePlaces extends AppCompatActivity {
 
         BDManager sav = new BDManager(this);
         sav.open();
-        sav.addPlace(new BD(0,name.getText().toString() ,type.getSelectedItem().toString() , address.getText().toString(),description.getText().toString()));
+        sav.addPlace(new BD(name.getText().toString() ,type.getSelectedItem().toString() , address.getText().toString(),description.getText().toString()));
         sav.close();
 
         name.setText("");
@@ -70,6 +70,10 @@ public class SavePlaces extends AppCompatActivity {
     }
 
     public void addType(){
+
+    }
+
+    public void deleteType(){
 
     }
 

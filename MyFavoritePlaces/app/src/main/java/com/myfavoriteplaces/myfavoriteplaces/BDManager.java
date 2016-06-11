@@ -11,19 +11,18 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class BDManager {
     private static final String TABLE_NAME = "places";
-    public static final String KEY_ID_PLACE = "id_place";
+    public static final String KEY_ID_PLACE = "_id";
     public static final String KEY_NOM_PLACE = "nom_place";
     public static final String KEY_TYPE_PLACE = "type_place";
     public static final String KEY_ADDRESS_PLACE = "address_place";
     public static final String KEY_DESCRIPTION_PLACE = "description_place";
-    public static final String CREATE_TABLE_PLACES = "CREATE TABLE "+TABLE_NAME+" " +
-            " (" +
-            " "+KEY_ID_PLACE+" INTEGER primary key," +
-            " "+KEY_NOM_PLACE+" TEXT" +
-            " "+KEY_TYPE_PLACE+" TEXT" +
-            " "+KEY_ADDRESS_PLACE+" TEXT" +
-            " "+KEY_DESCRIPTION_PLACE+" TEXT" +
-            ");";
+    public static final String CREATE_TABLE_PLACES = "CREATE TABLE IF NOT EXISTS "
+            + TABLE_NAME + "("
+            + KEY_ID_PLACE + " INTEGER PRIMARY KEY,"
+            + KEY_NOM_PLACE +" TEXT,"
+            + KEY_TYPE_PLACE +" TEXT,"
+            + KEY_ADDRESS_PLACE +" TEXT,"
+            + KEY_DESCRIPTION_PLACE +" TEXT);";
     private MySQLite maBaseSQLite;
     private SQLiteDatabase db;
 
@@ -63,7 +62,7 @@ public class BDManager {
     }
 
     public BD getPlace(int id){
-        BD p = new BD(0,"","","","");
+        BD p = new BD("","","","");
 
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_PLACE+"="+id, null);
         if (c.moveToFirst()){
