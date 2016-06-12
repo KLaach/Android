@@ -1,5 +1,8 @@
 package com.myfavoriteplaces.myfavoriteplaces;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -9,14 +12,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ListPlaces extends AppCompatActivity {
@@ -25,6 +32,7 @@ public class ListPlaces extends AppCompatActivity {
     private BDManager sav;
     private int mPlaceNumber = 1;
 
+    final Context context = this;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,40 @@ public class ListPlaces extends AppCompatActivity {
         final String SelectedTask = SelectedTaskCursor.getString(SelectedTaskCursor.getColumnIndex(BDManager.KEY_NOM_PLACE));
         String recherche = new String(SelectedTask.replace(' ','+'));
         switch (item.getItemId()) {
+            case R.id.infos:
+                LayoutInflater layoutInflater = LayoutInflater.from(context);
+                View infosView = layoutInflater.inflate(R.layout.infos, null);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                alertDialogBuilder.setView(infosView);
+
+                final TextView infos_nom = (TextView) infosView.findViewById(R.id.infos_nom);
+                final TextView infos_type = (TextView) infosView.findViewById(R.id.infos_type);
+                final TextView infos_address = (TextView) infosView.findViewById(R.id.infos_address);
+                final TextView infos_description = (TextView) infosView.findViewById(R.id.infos_description);
+
+                BD p = new BD("", "", "", "");
+                p = sav.getPlace(SelectedTaskCursor.getString(SelectedTaskCursor.getColumnIndex(BDManager.KEY_NOM_PLACE)));
+
+                infos_nom.setText("Nom : "+p.getNom_place());
+                infos_type.setText("Type : "+p.getType_place());
+                infos_address.setText("Adresse : "+p.getAddress_place());
+                infos_description.setText("Description : "+p.getDescription_place());
+
+
+                // setup a dialog window
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                // create an alert dialog
+                AlertDialog alertD = alertDialogBuilder.create();
+
+                alertD.show();
+                return true;
             case R.id.modifier:
                 Intent i = new Intent(ListPlaces.this, SavePlaces.class);
                 i.putExtra("nom_place", SelectedTaskCursor.getString(SelectedTaskCursor.getColumnIndex(BDManager.KEY_NOM_PLACE)));
