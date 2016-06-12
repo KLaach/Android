@@ -35,6 +35,9 @@ public class SavePlaces extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.save_places);
 
+        Intent i = getIntent();
+        final String nom_modif = i.getStringExtra("nom_place");
+
         final EditText name = (EditText) findViewById(R.id.NomPlace);
         final Spinner type = (Spinner) findViewById(R.id.TypePlace);
         final EditText address = (EditText) findViewById(R.id.AdressePlace);
@@ -55,6 +58,22 @@ public class SavePlaces extends AppCompatActivity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         TypePlace.setAdapter(adapter);
+
+        if(nom_modif != null){
+            BDManager sav = new BDManager(this);
+            sav.open();
+            BD p = new BD("", "", "", "");
+            p = sav.getPlace(nom_modif);
+
+            name.setText(p.getNom_place());
+            address.setText(p.getAddress_place());
+            description.setText(p.getDescription_place());
+
+            String stringSpinner = p.getType_place();
+            ArrayAdapter Adapt = (ArrayAdapter) TypePlace.getAdapter();
+            int spinnerPosition = Adapt.getPosition(stringSpinner);
+            TypePlace.setSelection(spinnerPosition);
+        }
 
         Button btnSupprimer= (Button)findViewById(R.id.btnSupprimer);
         btnSupprimer.setOnClickListener(new View.OnClickListener() {
@@ -93,11 +112,13 @@ public class SavePlaces extends AppCompatActivity {
                                 String nouveauType = input.getText().toString();
                                 adapter.add(nouveauType);
                                 TypePlace.setAdapter(adapter);
+                                int spinnerPosition = adapter.getPosition(nouveauType);
+                                TypePlace.setSelection(spinnerPosition);
                             }
                         })
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,	int id) {
+                                    public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
                                     }
                                 });
@@ -119,10 +140,22 @@ public class SavePlaces extends AppCompatActivity {
         final EditText address = (EditText) findViewById(R.id.AdressePlace);
         final EditText description = (EditText) findViewById(R.id.DescriptionPlace);
 
+        Intent i = getIntent();
+        final String nom_modif = i.getStringExtra("nom_place");
+
         BDManager sav = new BDManager(this);
         sav.open();
-        sav.addPlace(new BD(name.getText().toString() ,type.getSelectedItem().toString() , address.getText().toString(),description.getText().toString()));
-        sav.close();
+
+        if(nom_modif != null){
+            sav.modPlace(nom_modif, new BD(name.getText().toString(), type.getSelectedItem().toString(), address.getText().toString(), description.getText().toString()));
+            Intent y = new Intent(SavePlaces.this, ListPlaces.class);
+            startActivity(y);
+            sav.close();
+
+        }else{
+            sav.addPlace(new BD(name.getText().toString() ,type.getSelectedItem().toString() , address.getText().toString(),description.getText().toString()));
+            sav.close();
+        }
 
         name.setText("");
         type.setSelection(0);
@@ -130,12 +163,26 @@ public class SavePlaces extends AppCompatActivity {
         description.setText("");
     }
 
-    public void addType(){
+    public void cancel(View view){
+        final EditText name = (EditText) findViewById(R.id.NomPlace);
+        final Spinner type = (Spinner) findViewById(R.id.TypePlace);
+        final EditText address = (EditText) findViewById(R.id.AdressePlace);
+        final EditText description = (EditText) findViewById(R.id.DescriptionPlace);
 
-    }
+        Intent i = getIntent();
+        final String nom_modif = i.getStringExtra("nom_place");
 
-    public void deleteType(){
+        if(nom_modif != null){
+            Intent y = new Intent(SavePlaces.this, ListPlaces.class);
+            startActivity(y);
+        }else{
+            name.setText("");
+            type.setSelection(0);
+            address.setText("");
+            description.setText("");
 
+            finish();
+        }
     }
 
 }

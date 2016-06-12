@@ -45,23 +45,31 @@ public class BDManager {
         return db.insert(TABLE_NAME,null,values);
     }
 
-    public int modPlace(BD place){
+    public int modPlace(String old_name, BD place){
         ContentValues values = new ContentValues();
         values.put(KEY_NOM_PLACE, place.getNom_place());
         values.put(KEY_TYPE_PLACE, place.getType_place());
         values.put(KEY_ADDRESS_PLACE, place.getAddress_place());
         values.put(KEY_DESCRIPTION_PLACE, place.getDescription_place());
 
-        String where = KEY_ID_PLACE+" = ?";
-        String[] whereArgs = {place.getId_place()+""};
+        String where = KEY_NOM_PLACE+" = ?";
+        String[] whereArgs = {old_name+""};
 
         return db.update(TABLE_NAME, values, where, whereArgs);
     }
 
-    public BD getPlace(int id){
+    public int suppPlace(String place){
+
+        String where = KEY_NOM_PLACE+" = ?";
+        String[] whereArgs = {place+""};
+
+        return db.delete(TABLE_NAME, where, whereArgs);
+    }
+
+    public BD getPlace(String place){
         BD p = new BD("","","","");
 
-        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_ID_PLACE+"="+id, null);
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+KEY_NOM_PLACE+"='"+place+"'", null);
         if (c.moveToFirst()){
             p.setId_place(c.getInt(c.getColumnIndex(KEY_ID_PLACE)));
             p.setNom_place(c.getString(c.getColumnIndex(KEY_NOM_PLACE)));
