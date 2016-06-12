@@ -44,8 +44,8 @@ public class SavePlaces extends AppCompatActivity {
         final EditText description = (EditText) findViewById(R.id.DescriptionPlace);
 
         final Spinner TypePlace = (Spinner) findViewById(R.id.TypePlace);
-        List ChoixType = new ArrayList();
-        ChoixType.add("Default");
+        final List ChoixType = new ArrayList();
+        ChoixType.add("Défaut");
         ChoixType.add("Boîte");
         ChoixType.add("Camping");
         ChoixType.add("Cinéma");
@@ -106,17 +106,23 @@ public class SavePlaces extends AppCompatActivity {
                 // setup a dialog window
                 alertDialogBuilder
                         .setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // get user input and set it to result
                                 String nouveauType = input.getText().toString();
-                                adapter.add(nouveauType);
+                                ChoixType.add(nouveauType);
+                                final ArrayAdapter adapter = new ArrayAdapter(
+                                        context,
+                                        android.R.layout.simple_spinner_item,
+                                        ChoixType
+                                );
+                                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 TypePlace.setAdapter(adapter);
                                 int spinnerPosition = adapter.getPosition(nouveauType);
                                 TypePlace.setSelection(spinnerPosition);
                             }
                         })
-                        .setNegativeButton("Cancel",
+                        .setNegativeButton("Annuler",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
